@@ -2,9 +2,15 @@
 
 .step {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  @media (--small-viewport) {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .fullScreen {
@@ -12,7 +18,18 @@
 }
 
 .content {
-  padding-bottom: 48px;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 48px;
+
+  background-image: url('assets/powered-by-onfido.svg');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .thickWrapper {
@@ -128,17 +145,6 @@
   margin-top: -12px;
   margin-left: 12px;;
   padding: 0rem 1rem;
-}
-
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  height: 48px;
-
-  background-image: url('assets/powered-by-onfido.svg');
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
 }
 
 .helpList {

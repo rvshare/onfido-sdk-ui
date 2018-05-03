@@ -1,6 +1,7 @@
 @import (less) "../Theme/constants.css";
 
 .navigation {
+  flex: 0 0 auto;
   height: 32px;
   padding: 16px 16px 0;
   text-align: left;

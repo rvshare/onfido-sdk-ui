@@ -34,14 +34,12 @@
 .inner {
   /* Relative positioning so overflow affects absolute children */
   position: relative;
-  overflow: auto;
   margin: auto;
 
   width: 94vw;
   max-width: 32rem;
   height: 600px;
   text-align: center;
-  max-height: ~"calc(100% + 4px)";
   border-radius: 8px;
 
   font-family: "Open Sans", sans-serif !important;
@@ -55,7 +53,6 @@
   @media (--small-viewport) {
     width: 100%;
     height: 100%;
-    position: absolute;
     border-radius: 0px;
   }
 

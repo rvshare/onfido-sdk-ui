@@ -1,9 +1,7 @@
 @import (less) "../Theme/constants.css";
 
 .previewsContainer {
-  min-height: 80%;
   width: 100%;
-  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
