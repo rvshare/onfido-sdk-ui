@@ -25,7 +25,6 @@ elif [ -n "${TRAVIS_TAG// }" ] #TAG is not empty
 then
   if [ "$NODE_ENV" == "production" ]
   then
-
     #sorts the tags and picks the latest
     #sort -V does not work on the travis machine
     #sort -V              ref: http://stackoverflow.com/a/14273595/689223
@@ -41,6 +40,9 @@ then
     fi
 
     DEPLOY_SUBDOMAIN_UNFORMATTED_LIST+=(${TRAVIS_TAG}-tag)
+  elif [ "$NODE_ENV" == "staging" ]
+  then
+    DEPLOY_SUBDOMAIN_UNFORMATTED_LIST+=(staging-${TRAVIS_TAG}-tag)
   fi
 else
   if [ "$NODE_ENV" == "test" ]
