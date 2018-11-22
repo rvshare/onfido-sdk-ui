@@ -7,6 +7,7 @@ import Title from '../Title'
 import withPrivacyStatement from './withPrivacyStatement'
 import withCameraDetection from './withCameraDetection'
 import withFlowChangeOnDisconnectCamera from './withFlowChangeOnDisconnectCamera'
+import withCameraSupportHandling from './withCameraSupportHandling'
 import { isDesktop } from '../utils'
 import { compose } from '../utils/func'
 import { randomId } from '~utils/string'
@@ -98,4 +99,5 @@ export default compose(
   withPrivacyStatement,
   withCameraDetection,
   withFlowChangeOnDisconnectCamera,
+  withCameraSupportHandling
 )(Face)
