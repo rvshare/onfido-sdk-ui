@@ -356,6 +356,10 @@
     },
     "camera_inactive_no_fallback": {
       "instruction": "Make sure your device has a working camera"
+    },
+    "unsupported_camera_error": {
+      "message": "Your browser has no camera support.",
+      "instruction": "Please use a different browser"
     }
   },
   "passport": "Passport",
