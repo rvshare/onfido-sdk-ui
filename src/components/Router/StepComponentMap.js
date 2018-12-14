@@ -16,7 +16,7 @@ import { PoACapture, PoAIntro, PoAGuidance } from '../ProofOfAddress'
 export const componentsList = ({flow, documentType, steps, mobileFlow}) => {
   const captureSteps = mobileFlow ? clientCaptureSteps(steps) : steps
   return flow === 'captureSteps' ?
-    createComponentList(captureStepsComponents(documentType, mobileFlow, steps), captureSteps) :
+    createComponentList(captureStepsComponents(documentType, mobileFlow), captureSteps) :
     createComponentList(crossDeviceComponents, crossDeviceSteps(steps))
 }
 
@@ -27,23 +27,21 @@ const hasCompleteStep = (steps) => steps.some(isComplete)
 const clientCaptureSteps = (steps) =>
   hasCompleteStep(steps) ? steps : [...steps, {type: 'complete'}]
 
-const shouldUseVideo = steps => {
-  const { options: faceOptions } = Array.find(steps, ({ type }) => type === 'face') || {}
-  return (faceOptions || {}).requestedVariant === 'video' && window.MediaRecorder
-}
+const shouldUseVideo = ({options = {}}) =>
+  options.requestedVariant === 'video' && window.MediaRecorder
 
-const captureStepsComponents = (documentType, mobileFlow, steps) => {
+const captureStepsComponents = (documentType, mobileFlow) => step => {
   const complete = mobileFlow ? [ClientSuccess] : [Complete]
 
   return {
     welcome: () => [Welcome],
-    face: () => shouldUseVideo(steps) ?
+    face: () => shouldUseVideo(step) ?
         [VideoIntro, VideoCapture, VideoConfirm] :
         [SelfieCapture, SelfieConfirm],
     document: () => createIdentityDocumentComponents(documentType),
     poa: () => [PoAIntro, SelectPoADocument, PoAGuidance, PoACapture, DocumentFrontConfirm],
     complete: () => complete
-  }
+  }[step.type]()
 }
 
 const createIdentityDocumentComponents = (documentType) => {
@@ -61,10 +59,11 @@ const crossDeviceSteps = (steps) => {
   return hasCompleteStep(steps) ? [...baseSteps, completeStep] : baseSteps
 }
 
-const crossDeviceComponents = {
-  crossDevice: () => [CrossDeviceIntro, CrossDeviceLink, MobileFlow],
-  complete: () => [Complete]
-}
+const crossDeviceComponents = ({type}) =>
+  ({
+    crossDevice: () => [CrossDeviceIntro, CrossDeviceLink, MobileFlow],
+    complete: () => [Complete]
+  }[type]())
 
 const createComponentList = (components, steps) => {
   const mapSteps = (step, stepIndex) => createComponent(components, step, stepIndex)
@@ -73,8 +72,9 @@ const createComponentList = (components, steps) => {
 
 const createComponent = (components, step, stepIndex) => {
   const {type} = step
-  if (!(type in components)) { console.error('No such step: ' + type) }
-  return components[type]().map(wrapComponent(step, stepIndex))
+  const createdComponent = components(step)
+  if (!createdComponent) { console.error('No such step: ' + type) }
+  return createdComponent.map(wrapComponent(step, stepIndex))
 }
 
 const wrapComponent = (step, stepIndex) => (component) => ({component, step, stepIndex})
