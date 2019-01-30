@@ -84,7 +84,7 @@ And the CSS styles:
 
 #### Example app
 
-[JsFiddle example here.](https://jsfiddle.net/t25gzfeh/)
+[JSFiddle example here.](https://jsfiddle.net/gh/get/library/pure/onfido/onfido-sdk-ui/tree/master/demo/fiddle/)
 Simple example using script tags.
 
 #### 4.2 NPM style import
