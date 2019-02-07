@@ -88,14 +88,50 @@
   align-self: flex-start;
 }
 
-@document-types: passport, national-identity-card, driving-licence,
-                 bank-building-society-statement, utility-bill, letter;
-
-.loop(@index: 1) when (@index <= length(@document-types)) {
-  @value: extract(@document-types, @index);
-  .icon-@{value} {
-    background-image: url('assets/icon-@{value}.svg');
-  }
-  .loop(@index + 1);
+@svg-load passportIcon url('assets/icon-passport.svg') {
+ .svgCircleOverride
 }
-.loop();
+
+.icon-passport {
+  background-image: svg-inline(passportIcon);
+}
+
+@svg-load idIcon url('assets/icon-national-identity-card.svg') {
+ .svgCircleOverride
+}
+
+.icon-national-identity-card {
+  background-image: svg-inline(idIcon);
+}
+
+@svg-load licanceIcon url('assets/icon-driving-licence.svg') {
+ .svgCircleOverride
+}
+
+.icon-driving-licence {
+  background-image: svg-inline(licanceIcon);
+}
+
+@svg-load bankStatementIcon url('assets/icon-bank-building-society-statement.svg') {
+ .svgCircleOverride
+}
+
+.icon-bank-building-society-statement {
+  background-image: svg-inline(bankStatementIcon);
+}
+
+@svg-load utilityBillIcon url('assets/icon-utility-bill.svg') {
+ .svgCircleOverride
+}
+
+.icon-utility-bill {
+  background-image: svg-inline(utilityBillIcon);
+}
+
+@svg-load letterIcon url('assets/icon-letter.svg') {
+ .svgCircleOverride
+}
+
+.icon-letter{
+  background-image: svg-inline(letterIcon);
+}

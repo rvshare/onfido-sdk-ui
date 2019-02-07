@@ -31,6 +31,9 @@
 
 @svg-load smsIcon url('assets/connection-large.svg') {
   .svgCircleOverride;
+  g path {
+    fill: @color-primary-500;
+  }
 }
 
 @svg-load takePhotosIcon url('assets/take-photos.svg') {

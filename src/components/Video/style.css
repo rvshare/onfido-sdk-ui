@@ -44,12 +44,28 @@
   height: 26px;
 }
 
+@svg-load micIcon url('assets/mic.svg') {
+  g {
+    path:nth-child(1) {
+      fill: @color-primary-500;
+    }
+  }
+}
+
 .speak_out_loudIcon {
-  background-image: url('assets/mic.svg');
+  background-image: svg-inline(micIcon);
+}
+
+@svg-load cameraIcon url('assets/camera.svg') {
+  g {
+    path:nth-child(1) {
+      fill: #353FF4;
+    }
+  }
 }
 
 .two_actionsIcon {
-  background-image: url('assets/camera.svg');
+  background-image: svg-inline(cameraIcon);
 }
 
 .movement {
