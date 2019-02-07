@@ -89,13 +89,19 @@
   margin-top: 8px;
 }
 
+@svg-load icon url('./assets/checkmark-green.svg'){
+  g {
+    fill: @color-primary-500;
+  }
+}
+
 .copySuccess .actionContainer:before {
   width: 13px;
   height: 11px;
   display: inline-block;
   content: "";
   background-repeat: no-repeat;
-  background-image: url('./assets/checkmark-green.svg');
+  background-image: svg-inline(icon);
   z-index: 1;
 }
 

@@ -6,6 +6,7 @@ import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import customMedia from 'postcss-custom-media';
 import url from 'postcss-url';
+import inlineSvg from 'postcss-inline-svg';
 import mapObject from 'object-loops/map'
 import mapKeys from 'object-loops/map-keys'
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
@@ -54,7 +55,8 @@ const baseStyleLoaders = (modules=true) => [
       plugins: () => [
         customMedia(),
         autoprefixer({ browsers: 'last 2 versions' }),
-        url({ url: "inline" })
+        url({ url: "inline" }),
+        inlineSvg()
       ],
       sourceMap: true
     }

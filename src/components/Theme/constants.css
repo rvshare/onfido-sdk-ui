@@ -45,3 +45,9 @@
 .width-parent-relative(@base-width,@parent-width) {
   width: 100%*(@base-width/@parent-width)
 }
+
+.svgCircleOverride {
+  circle {
+    fill: @color-primary-500;
+  }
+}

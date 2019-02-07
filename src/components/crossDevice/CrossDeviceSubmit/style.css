@@ -1,9 +1,15 @@
+@import (less) "../../Theme/constants.css";
+
+@svg-load icon url('assets/complete-tick-small.svg'){
+  .svgCircleOverride
+}
+
 .icon {
   height: 36px;
   width: 36px;
   margin-right: 14px;
   float: left;
-  background-image: url('assets/complete-tick-small.svg');
+  background-image: svg-inline(icon);
 }
 
 .uploadList {

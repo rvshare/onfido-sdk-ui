@@ -29,6 +29,22 @@
   }
 }
 
+@svg-load smsIcon url('assets/connection-large.svg') {
+  .svgCircleOverride;
+}
+
+@svg-load takePhotosIcon url('assets/take-photos.svg') {
+  .svgCircleOverride;
+}
+
+@svg-load takeSelfieIcon url('assets/take-selfie.svg') {
+  .svgCircleOverride;
+}
+
+@svg-load returnComputer url('assets/return-to-computer-large.svg') {
+  .svgCircleOverride;
+}
+
 .stageIcon {
   background-size: contain;
   flex-shrink: 0;
@@ -39,19 +55,19 @@
   z-index: 1;
 
   &-sms {
-    background-image: url('assets/connection-large.svg')
+    background-image: svg-inline(smsIcon);
   }
 
   &-take-photos {
-    background-image: url('assets/take-photos.svg');
+    background-image: svg-inline(takePhotosIcon);
   }
 
   &-take-selfie {
-    background-image: url('assets/take-selfie.svg');
+    background-image: svg-inline(takeSelfieIcon);
   }
 
   &-return-computer {
-    background-image: url('assets/return-to-computer-large.svg')
+    background-image: svg-inline(returnComputer);
   }
 }
 

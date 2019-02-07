@@ -1,7 +1,13 @@
+@import (less) "../../Theme/constants.css";
+
+@svg-load icon url('assets/return-to-computer-large.svg'){
+  .svgCircleOverride
+}
+
 .icon {
   height: 144px;
   background-size: contain;
-  background-image: url('assets/return-to-computer-large.svg');
+  background-image: svg-inline(icon);
   margin-top: 50px;
   margin-bottom: 50px;
 }
