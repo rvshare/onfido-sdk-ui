@@ -6,4 +6,4 @@ gem 'cucumber', :git => 'https://github.com/cucumber/cucumber-ruby.git', :ref =>
 gem 'cucumber-api', :git => 'https://github.com/cristian-m-vasile/cucumber-api.git'
 gem 'rake'
 gem 'selenium-webdriver'
-gem 'browserstack-local'
+gem 'browserstack-local', :git => 'https://github.com/onfido/browserstack-local-ruby.git', :branch => 'test/binary-upgrade'
