@@ -33,23 +33,13 @@ def create_driver
 
   # IE specific
 
-  capabilities['acceptSslCerts'] = "true"
-  capabilities['ignoreProtectedModeSettings'] = "true"
   # Syntethic events issue on IE
   # Ref: https://forums.smartclient.com/forum/smart-gwt-technical-q-a/33394-webdriver-ie-click-doesn-t-seem-to-work
   # ref: https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities
   capabilities['nativeEvents'] = "true"
-  capabilities['requireWindowFocus'] = "true"
-
-  # IE fails when uploading files
-  # Some recommend to set fileUploadDialogTimeout,
-  # However this doesn't seem to work,
-  # and the capability also doesn't seem to be sent
-  # ref: https://github.com/seleniumhq/selenium/issues/1604
-  #
-  # There is an OPEN BUG on this issue
-  # https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/3858
-  capabilities['ie.fileUploadDialogTimeout'] = "10000"
+  capabilities['enablePersistentHover'] = "true"
+  capabilities['javascriptEnabled'] = "true"
+  capabilities['cssSelectorsEnabled'] = "true"
 
   puts capabilities.to_json
 
@@ -63,7 +53,7 @@ def create_driver
 
   driver = Selenium::WebDriver.for(:remote, :url => url, :desired_capabilities => capabilities)
 
-  # Supports uploading file to a remove runner
+  # Supports uploading file to a remote runner
   # ref: https://saucelabs.com/blog/selenium-tips-uploading-files-in-remote-webdriver
   driver.file_detector = lambda do |args|
      # args => ["/path/to/file"]
