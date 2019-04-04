@@ -21,7 +21,7 @@ exports.config = {
   logLevel: 'warn',
   coloredLogs: true,
   screenshotPath: './errorShots/',
-  baseUrl: '',
+  baseUrl: 'https://localhost:8080/',
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
@@ -35,7 +35,8 @@ exports.config = {
   framework: 'mocha',
   mochaOpts: {
     ui: 'bdd',
-    timeout: 60000
+    timeout: 60000,
+    compilers: ['js:@babel/register']
   },
 
   // Code to start browserstack local before start of test

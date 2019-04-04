@@ -21,7 +21,9 @@
     "flowtype"
   ],
   "globals": {
-    "expect": false
+    "expect": false,
+    "$": true,
+    "browser": true
   },
   "rules": {
     "no-empty": 0,
