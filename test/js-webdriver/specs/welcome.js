@@ -7,7 +7,7 @@ describe('Welcome screen click', () => {
 
       WelcomeScreen.primaryBtn.click();
 
-
       DocumentSelectionScreen.title.getText().should.equal(DocumentSelectionScreen.copy().title);
+      DocumentSelectionScreen.passport.click();
   });
 });
