@@ -3,16 +3,14 @@ import { appendToTracking } from '../../Tracker'
 import DocumentAutoCapture from '../Photo/DocumentAutoCapture'
 import DocumentLiveCapture from '../Photo/DocumentLiveCapture'
 import Uploader from '../Uploader'
-import GenericError from '../GenericError'
 import PageTitle from '../PageTitle'
-import CustomFileInput from '../CustomFileInput'
 import withPrivacyStatement from './withPrivacyStatement'
 import withCameraDetection from './withCameraDetection'
 import withCrossDeviceWhenNoCamera from './withCrossDeviceWhenNoCamera'
 import { isDesktop } from '~utils'
 import { compose } from '~utils/func'
-import { randomId, upperCase } from '~utils/string'
-import { getMobileOSName } from '~utils/detectMobileOS'
+import { randomId } from '~utils/string'
+import CustomFileInput from '../CustomFileInput'
 import { localised } from '../../locales'
 import style from './style.css'
 
@@ -59,15 +57,13 @@ class Document extends Component {
       isPoA,
       side,
       translate,
-      subTitle,
-      uploadFallback
+      subTitle
     } = this.props
     const copyNamespace = `capture.${isPoA ? poaDocumentType : documentType}.${side}`
     const title = translate(`${copyNamespace}.title`)
     const propsWithErrorHandling = { ...this.props, onError: this.handleError }
     const renderTitle = <PageTitle {...{title, subTitle}} smaller />
     const renderFallback = isDesktop ? this.renderCrossDeviceFallback : this.renderUploadFallback
-    const enableLiveDocumentCapture = useLiveDocumentCapture && !isDesktop
     if (hasCamera) {
       if (useWebcam) {
         return (
@@ -80,7 +76,7 @@ class Document extends Component {
           />
         )
       }
-      if (enableLiveDocumentCapture) {
+      if (useLiveDocumentCapture && !isDesktop) {
         return (
           <DocumentLiveCapture
             {...propsWithErrorHandling}
@@ -88,16 +84,11 @@ class Document extends Component {
             renderFallback={ renderFallback }
             containerClassName={ style.liveDocumentContainer }
             onCapture={ this.handleCapture }
-            isUploadFallbackDisabled={ !uploadFallback }
+            isUploadFallbackDisabled={ !this.props.uploadFallback }
           />
         )
       }
     }
-
-    if (!hasCamera && !uploadFallback && enableLiveDocumentCapture) {
-      return <GenericError error={{ name: `UNSUPPORTED_${upperCase(getMobileOSName())}_BROWSER` }} />
-    }
-
     return (
       <Uploader
         {...propsWithErrorHandling}

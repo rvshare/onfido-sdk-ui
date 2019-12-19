@@ -15,9 +15,3 @@
   &:extend(.icon);
   background-image: url('assets/interrupted-flow.svg');
 }
-
-.unsupportedBrowserIcon {
-  &:extend(.icon);
-  background-image: url('assets/error-cross-small.svg');
-  height: 54*@unit;
-}
