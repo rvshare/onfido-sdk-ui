@@ -30,6 +30,26 @@ export const uploadSnapshot = (data, url, token, onSuccess, onError) => {
   sendFile(endpoint, data, token, onSuccess, onError)
 }
 
+export const sendMultiframeSelfie = (snapshot, selfie, token, url, onSuccess, onError) => {
+  const snapshotData = {
+    file: {
+      blob: snapshot.blob,
+      filename: snapshot.filename
+    }
+  }
+  const { blob, filename, sdkMetadata } = selfie
+
+  new Promise((resolve, reject) => {
+    uploadSnapshot(snapshotData, url, token, resolve, reject)
+  })
+  .then((res) => {
+    uploadLivePhoto({ file: { blob, filename }, sdkMetadata, snapshots: [res.id]}, url, token, onSuccess, onError)
+  })
+  .catch((res) => {
+    onError(res)
+  })
+}
+
 export const uploadLiveVideo = ({challengeData, blob, language, sdkMetadata={}}, url, token, onSuccess, onError) => {
   const {
     challenges: challenge,
